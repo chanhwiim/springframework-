@@ -11,15 +11,12 @@ class DataLoadServiceTest {
 
     @Test
     void loadAndMerge() {
-        // Arrange
         Scores mockScores = Mockito.mock(Scores.class);
         Students mockStudents = Mockito.mock(Students.class);
 
-        // Act
         DataLoadService dataLoadService = new CsvDataLoadService(mockScores, mockStudents);
         dataLoadService.loadAndMerge();
 
-        // Assert
         verify(mockScores).load();
         verify(mockStudents).load();
         verify(mockStudents).merge(Mockito.anyList());

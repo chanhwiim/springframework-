@@ -34,7 +34,6 @@ public class DefaultGradeQueryService implements GradeQueryService {
 
     @Override
     public List<Score> getScoreByStudentName(String name) {
-        // TODO 5: 학생 이름으로 점수를 반환합니다. 동명이인 고려합니다. cle
 
         List<String> studentList = students.findAll().stream()
                 .filter(student -> student.getName().equals(name))
@@ -48,7 +47,6 @@ public class DefaultGradeQueryService implements GradeQueryService {
 
     @Override
     public Score getScoreByStudentSeq(int seq) {
-        // TODO 6 : 학번으로 점수를 반환합니다. seq 인자가 학번입니다. cle
         List<Integer> studentList = students.findAll().stream()
                 .filter(student -> student.getSeq() == seq)
                 .map(Student::getSeq)

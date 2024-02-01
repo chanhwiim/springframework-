@@ -30,7 +30,6 @@ class GradeQueryServiceTest {
 
     @Test
     void getScoreByStudentName() {
-        // Arrange
         String studentName = "John";
         Student student1 = new Student(1, studentName);
         Student student2 = new Student(2, studentName);
@@ -41,7 +40,6 @@ class GradeQueryServiceTest {
         Score score3 = new Score(3, 75);
         when(mockScores.findAll()).thenReturn(Arrays.asList(score1, score2, score3));
 
-        // Act
         List<Score> result = gradeQueryService.getScoreByStudentName(studentName);
 
 
@@ -50,20 +48,16 @@ class GradeQueryServiceTest {
 
     @Test
     void getScoreByStudentName_NoMatchingName() {
-        // Arrange
         String studentName = "Alice";
         when(mockStudents.findAll()).thenReturn(Collections.emptyList());
 
-        // Act
         List<Score> result = gradeQueryService.getScoreByStudentName(studentName);
 
-        // Assert
         assertEquals(0, result.size());
     }
 
     @Test
     void getScoreByStudentSeq() {
-        // Arrange
         int studentSeq = 1;
         Student student = new Student(studentSeq, "John");
         when(mockStudents.findAll()).thenReturn(Collections.singletonList(student));
@@ -73,23 +67,18 @@ class GradeQueryServiceTest {
         Score score3 = new Score(3, 75);
         when(mockScores.findAll()).thenReturn(Arrays.asList(score1, score2, score3));
 
-        // Act
         Score result = gradeQueryService.getScoreByStudentSeq(studentSeq);
 
-        // Assert
         assertEquals(score1, result);
     }
 
     @Test
     void getScoreByStudentSeq_NoMatchingSeq() {
-        // Arrange
         int studentSeq = 4;
         when(mockStudents.findAll()).thenReturn(Collections.emptyList());
 
-        // Act
         Score result = gradeQueryService.getScoreByStudentSeq(studentSeq);
 
-        // Assert
         assertEquals(null, result);
     }
 }

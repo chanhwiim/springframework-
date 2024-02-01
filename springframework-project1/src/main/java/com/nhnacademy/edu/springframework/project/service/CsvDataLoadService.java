@@ -20,10 +20,10 @@ public class CsvDataLoadService implements DataLoadService {
 
     @Override
     public void loadAndMerge() {
-//        Scores scores = CsvScores.getInstance(); //테스트시 주석처리.
+        Scores scores = CsvScores.getInstance(); //테스트시 주석처리.
         scores.load();
 
-//        Students students = CsvStudents.getInstance(); //테스트시 주석처리.
+        Students students = CsvStudents.getInstance(); //테스트시 주석처리.
         students.load();
         students.merge(scores.findAll());
     }

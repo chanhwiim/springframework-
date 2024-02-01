@@ -19,10 +19,6 @@ public class CsvStudents implements Students {
     private static CsvStudents instance;
     private List<Student> studentList = new ArrayList<>();
 
-    /**
-     * TODO 3 : maybe cle
-     * Java Singleton 패턴으로 getInstance() 를 구현하세요.
-     **/
     public static Students getInstance() {
         if (instance == null) {
             synchronized (CsvStudents.class) {
@@ -34,8 +30,6 @@ public class CsvStudents implements Students {
         return instance;
     }
 
-    // TODO 7 : student.csv 파일에서 데이터를 읽어 클래스 멤버 변수에 추가하는 로직을 구현하세요. cle
-    // 데이터를 적재하고 읽기 위해서, 적절한 자료구조를 사용하세요.
     @Override
     public void load() {
         try (CSVReader csvReader = new CSVReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("data/student.csv")))) {
@@ -52,11 +46,6 @@ public class CsvStudents implements Students {
         return studentList;
     }
 
-    /**
-     * TODO 8 : students 데이터에 score 정보를 추가하세요. cle fkfkfkfkfkkfkfkfk
-     *
-     * @param scores
-     */
     @Override
     public void merge(Collection<Score> scores) {
         for (Student student : findAll()) {

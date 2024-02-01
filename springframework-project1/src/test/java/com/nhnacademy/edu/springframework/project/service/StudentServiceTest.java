@@ -28,17 +28,14 @@ class StudentServiceTest {
 
     @Test
     void getPassedStudents() {
-        // Arrange
         Student student1 = new Student(1, "John");
         Student student2 = new Student(2, "Alice");
 
-        // Assuming student1 passed and student2 failed
         student1.setScore(new Score(1, 80));
-        student2.setScore(new Score(2, 40)); // Assuming a failing score
+        student2.setScore(new Score(2, 40));
 
         when(mockStudents.findAll()).thenReturn(List.of(student1, student2));
 
-        // Act
         Collection<Student> result = studentService.getPassedStudents();
 
         assertNotNull(result);
@@ -46,11 +43,9 @@ class StudentServiceTest {
 
     @Test
     void getStudentsOrderByScore() {
-        // Arrange
         Student student1 = new Student(1, "John");
         Student student2 = new Student(2, "Alice");
 
-        // Assuming scores for the students
         student1.setScore(new Score(1, 80));
         student2.setScore(new Score(2, 75));
 
