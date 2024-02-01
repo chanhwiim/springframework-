@@ -1,26 +1,36 @@
 package com.nhnacademy.edu.springframework.project.repository;
 
+import com.nhnacademy.edu.springframework.project.config.ServiceConfig;
+import com.nhnacademy.edu.springframework.project.repository.Students;
+import com.nhnacademy.edu.springframework.project.repository.Scores;
+import com.nhnacademy.edu.springframework.project.repository.CsvStudents;
 import com.nhnacademy.edu.springframework.project.service.Student;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.csv.Csv;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Collection;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest(classes = ServiceConfig.class)
 class StudentsTest {
+
+    @Autowired
+    private Students students;
+
+    @Autowired
+    private Scores scores;
 
     @Test
     void load() {
-        Students students = CsvStudents.getInstance();
         students.load();
         assertNotNull(students.findAll());
     }
 
     @Test
     void findAll() {
-        Students students = CsvStudents.getInstance();
         students.load();
         Collection<Student> allStudents = students.findAll();
 
@@ -30,10 +40,7 @@ class StudentsTest {
 
     @Test
     void merge() {
-        Students students = CsvStudents.getInstance();
         students.load();
-
-        Scores scores = CsvScores.getInstance();
         scores.load();
 
         students.merge(scores.findAll());

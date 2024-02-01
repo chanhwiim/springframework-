@@ -4,11 +4,14 @@ import com.nhnacademy.edu.springframework.project.repository.CsvStudents;
 import com.nhnacademy.edu.springframework.project.repository.Score;
 import com.nhnacademy.edu.springframework.project.repository.Scores;
 import com.nhnacademy.edu.springframework.project.repository.Students;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Service("gradeGueryService")
 public class DefaultGradeQueryService implements GradeQueryService {
 
     private final Students students;
@@ -18,20 +21,6 @@ public class DefaultGradeQueryService implements GradeQueryService {
         this.students = students;
         this.scores = scores;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DefaultGradeQueryService that = (DefaultGradeQueryService) o;
-        return Objects.equals(students, that.students) && Objects.equals(scores, that.scores);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(students, scores);
-    }
-
     @Override
     public List<Score> getScoreByStudentName(String name) {
 

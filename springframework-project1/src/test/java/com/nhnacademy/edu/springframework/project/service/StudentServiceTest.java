@@ -1,29 +1,41 @@
-// StudentServiceTest.java
 package com.nhnacademy.edu.springframework.project.service;
 
+import com.nhnacademy.edu.springframework.project.config.ServiceConfig;
 import com.nhnacademy.edu.springframework.project.repository.CsvStudents;
 import com.nhnacademy.edu.springframework.project.repository.Score;
 import com.nhnacademy.edu.springframework.project.repository.Students;
+import com.nhnacademy.edu.springframework.project.service.DefaultStudentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
+@SpringBootTest(classes = ServiceConfig.class)
 class StudentServiceTest {
 
+    @Mock
     private Students mockStudents;
+
+    @InjectMocks
     private DefaultStudentService studentService;
 
     @BeforeEach
     void setUp() {
-        mockStudents = Mockito.mock(Students.class);
-        studentService = new DefaultStudentService();
+        resetMockInteractions();
+    }
+
+    private void resetMockInteractions() {
+        when(mockStudents.findAll()).thenReturn(Collections.emptyList());
     }
 
     @Test
@@ -51,10 +63,8 @@ class StudentServiceTest {
 
         when(mockStudents.findAll()).thenReturn(List.of(student1, student2));
 
-        // Act
         Collection<Student> result = studentService.getStudentsOrderByScore();
 
         assertNotNull(result);
     }
-
 }

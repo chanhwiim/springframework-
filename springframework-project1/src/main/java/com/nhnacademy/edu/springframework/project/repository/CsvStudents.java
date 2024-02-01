@@ -3,6 +3,8 @@ package com.nhnacademy.edu.springframework.project.repository;
 import com.nhnacademy.edu.springframework.project.service.Student;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
+@Service
 public class CsvStudents implements Students {
 
     private static CsvStudents instance;
