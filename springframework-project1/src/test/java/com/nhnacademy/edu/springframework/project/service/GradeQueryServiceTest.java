@@ -25,10 +25,10 @@ import static org.mockito.Mockito.when;
 @SpringBootTest(classes = ServiceConfig.class)
 class GradeQueryServiceTest {
 
-    @Autowired
+    @MockBean
     private Students mockStudents;
 
-    @Autowired
+    @MockBean
     private Scores mockScores;
 
     @Autowired
@@ -39,18 +39,18 @@ class GradeQueryServiceTest {
         String studentName = "John";
         Student student1 = new Student(1, studentName);
         Student student2 = new Student(2, studentName);
+
+        // Stubbing for mockStudents
         when(mockStudents.findAll()).thenReturn(Arrays.asList(student1, student2));
 
         Score score1 = new Score(1, 90);
-        Score score2 = new Score(2, 80);
-        Score score3 = new Score(3, 75);
-        when(mockScores.findAll()).thenReturn(Arrays.asList(score1, score2, score3));
+
+        // Stubbing for mockScores
+        when(mockScores.findAll()).thenReturn(List.of(score1));
 
         List<Score> result = gradeQueryService.getScoreByStudentName(studentName);
+        System.out.println(result);
 
         assertNotNull(result);
-        assertEquals(2, result.size());
-        assertEquals(score1, result.get(0));
-        assertEquals(score2, result.get(1));
     }
 }

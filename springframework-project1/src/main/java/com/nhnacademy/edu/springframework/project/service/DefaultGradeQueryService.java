@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 @Service("gradeGueryService")
 public class DefaultGradeQueryService implements GradeQueryService {
 
-    private final Students students;
-    private final Scores scores;
+    private Students students;
+    private Scores scores;
 
     public DefaultGradeQueryService(Students students, Scores scores) {
         this.students = students;
