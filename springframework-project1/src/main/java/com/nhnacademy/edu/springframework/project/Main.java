@@ -10,7 +10,6 @@ import java.util.Collection;
 
 public class Main {
 
-    // TODO 9 - 성공적으로 실행되어야 합니다.
     public static void main(String[] args) {
         try(AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("com.nhnacademy.edu.springframework.project")) {
             DataLoadService dataLoadService = context.getBean(CsvDataLoadService.class);
